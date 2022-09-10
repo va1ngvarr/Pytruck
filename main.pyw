@@ -1,3 +1,10 @@
+'''
+name: Truck-Pygame
+author: Igor Vasiljev
+email: va1ngvarr@outlook.com
+link: https://github.com/va1ngvarr/Truck-Pygame
+'''
+
 import pygame
 from pygame.locals import *
 
