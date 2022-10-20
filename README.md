@@ -1,4 +1,4 @@
-# Truck-Pygame
+# Pytruck
 A simple game written in Python as an example Pygame project
 
 The project is needed to show the structure of the game on pygame. It implements AWSD control of the car. And of course weirdly moving bots, because they work on if's!
