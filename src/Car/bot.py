@@ -9,7 +9,10 @@ class Bot(Car):
         self.y = random.randint(20, HEIGHT-20)
 
         self.degree = random.randint(-180, 180)
-        Car.create(self, 'Sprites//car_bot.png')
+        Car.create(self, '../resources/Sprites/car_bot.png')
+
+    # OF COURSE, I COULD TIE A NEURAL NETWORK HERE, BUT PERHAPS NOT
+    # MAYBE ONCE
 
     def self_driving(self):
         if self.x <= 20 or self.x >= WIDTH - 20:

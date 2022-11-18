@@ -1,8 +1,10 @@
 '''
 name: Pytruck
 author: Igor Vasiljev
+
 email: va1ngvarr@outlook.com
-link: https://github.com/va1ngvarr/Truck-Pygame
+repo: https://github.com/va1ngvarr/Pytruck
+
 '''
 
 import sys

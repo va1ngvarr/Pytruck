@@ -10,7 +10,7 @@ class Player(Car):
 
         self.degree = 0
 
-        Car.create(self, 'Sprites//car_player.png')
+        Car.create(self, '../resources/Sprites/car_player.png')
         self.car_rect = self.car.get_rect(center=(self.x, self.y))
         self.car_clean = self.car.copy()
 
