@@ -1,56 +1,68 @@
-'''
+"""
 name: Pytruck
 author: Igor Vasiljev
 
 email: va1ngvarr@outlook.com
 repo: https://github.com/va1ngvarr/Pytruck
 
-'''
+"""
 
 import sys
 
 import pygame
 from pygame.locals import *
 
-from Car import Bot, Player
-from settings import WIDTH, HEIGHT, FPS
+from Car import BotCar, PlayerCar, BaseCar
+from settings import WIDTH, HEIGHT, FPS, BOTS_AMOUNT
 
 # INITIALIZATION AND PARAMETERS
 pygame.init()
-main_sc = pygame.display.set_mode((WIDTH, HEIGHT))
-frame_limit = pygame.time.Clock().tick
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-amount_bot = 2
+TargetFPS = pygame.time.Clock().tick
 
-def main():
-    player = Player()
 
-    bots = [Bot() for x in range(amount_bot)]
+def tick_and_process_events(cars: list[BaseCar]) -> None:
+    TargetFPS(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+        for car in cars:
+            car.on_pygame_event(event)
 
+
+def draw_loop(cars: list[BaseCar]) -> None:
+    for car in cars:
+        screen.blit(car.car, car.car_rect)
+
+
+def update_loop(cars: list[BaseCar]) -> None:
+    for car in cars:
+        car.update()
+
+
+def draw_background():
+    screen.fill((255, 255, 255))
+
+
+def mainloop(cars: list[BaseCar]) -> None:
     while True:
-        frame_limit(FPS)
+        tick_and_process_events(cars)
 
-        # EVENT HANDLING
-        for i in pygame.event.get():
-            # EXIT
-            if i.type == pygame.QUIT:
-                sys.exit()
-            player.bindings(i)
+        draw_background()
 
-        # BACKGROUND FILL AND CAR DRAWING
-        main_sc.fill((255, 255, 255))
-
-        main_sc.blit(player.car, player.car_rect)
-        
-        for x in range(amount_bot):
-            main_sc.blit(bots[x].car, bots[x].car_rect)
-            bots[x].self_driving()
-            bots[x].drive()
-
-        player.drive()
+        draw_loop(cars)
+        update_loop(cars)
 
         pygame.display.update()
 
 
-if __name__ == '__main__':
+def main():
+    cars = [PlayerCar()]
+    cars.extend([BotCar() for _ in range(BOTS_AMOUNT)])
+
+    mainloop(cars)
+
+
+if __name__ == "__main__":
     main()

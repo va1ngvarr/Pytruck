@@ -1,15 +1,16 @@
-from . import Car 
+from . import BaseCar
 from settings import WIDTH, HEIGHT
 
 import random
 
-class Bot(Car):
+
+class BotCar(BaseCar):
     def __init__(self):
-        self.x = random.randint(20, WIDTH-20)
-        self.y = random.randint(20, HEIGHT-20)
+        self.x = random.randint(20, WIDTH - 20)
+        self.y = random.randint(20, HEIGHT - 20)
 
         self.degree = random.randint(-180, 180)
-        Car.create(self, '../resources/Sprites/car_bot.png')
+        super().__init__("../resources/Sprites/car_bot.png")
 
     # OF COURSE, I COULD TIE A NEURAL NETWORK HERE, BUT PERHAPS NOT
     # MAYBE ONCE
@@ -27,4 +28,7 @@ class Bot(Car):
                     self.rotation = 1
                 else:
                     self.rotation = -1
-        
+
+    def update(self) -> None:
+        self.self_driving()
+        self.process()

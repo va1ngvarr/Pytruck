@@ -1,3 +1,3 @@
-from .car import Car
-from .bot import Bot
-from .player import Player
+from .car import BaseCar
+from .bot import BotCar
+from .player import PlayerCar
