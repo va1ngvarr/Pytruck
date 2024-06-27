@@ -59,7 +59,7 @@ def mainloop(cars: list[BaseCar]) -> None:
 
 def main():
     cars = [PlayerCar()]
-    cars.extend([BotCar() for _ in range(BOTS_AMOUNT)])
+    cars.extend([BotCar() for _ in range(BOT_AMOUNT)])
 
     mainloop(cars)
 
